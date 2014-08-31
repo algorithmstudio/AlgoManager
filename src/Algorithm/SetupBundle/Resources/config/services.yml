@@ -1,0 +1,7 @@
+parameters:
+#    algorithm_setup.example.class: Algorithm\SetupBundle\Example
+
+services:
+#    algorithm_setup.example:
+#        class: %algorithm_setup.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

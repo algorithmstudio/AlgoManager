@@ -1,0 +1,61 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("serveurs") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+        <h1>{{ server.name }}</h1>
+    
+    <p class="actions">
+        
+        <input type="text" id="search-apps" placeholder="Rechercher une application">
+        
+    </p>
+    
+    <div class="clear"></div>
+        
+    <aside class="box table">
+        
+        <ul>
+            
+            <li class="title">
+            Nom
+            </li>
+                
+        {% for a in server.applications %}
+            
+            <li class="row {% if date(a.updated) > date('-1day') %}update{% endif %}">
+
+                <div class="label">
+                    <div class="label-content">{{ a.name }}</div>
+                </div>
+                
+                <div class="version">
+                    <div class="label-content">{{ a.version }}</div>
+                </div>
+                
+                <div class="field">
+                    <div class="field-content">{{ a.description }}</div>
+                </div>
+                <div class="clear"></div>
+
+            </li>
+
+        {% endfor %}
+    
+        </ul>
+    
+    </aside>
+       
+    
+    {% endblock %}
+    

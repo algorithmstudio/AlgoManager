@@ -1,0 +1,42 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("clients") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+        <h1>{{ client.name }} <a href="{{ path('algorithm_wiki_clients_infos', { 'id':client.id } ) }}" class="icon-info"></a></h1>
+    
+        {% if is_granted('ROLE_ADMIN') %}
+        <p class="actions">
+
+            <a href="{{ path('algorithm_wiki_clients_account_create') }}" class="button">Ajouter un compte</a>
+            <a href="{{ path('algorithm_wiki_clients_update', { 'client_id':client.id } ) }}" class="button">Modifier ce client</a>
+            <a href="{{ path('algorithm_wiki_clients_delete', { 'client_id':client.id }) }}" class="button">Supprimer ce client</a>
+
+        </p>
+        {% endif %}
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            {% for a in client.accounts %}
+            <li class="row"><a href="{{ path('algorithm_wiki_clients_account_details', { 'id':a.id }) }}">{{ a.name }}</a></li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% endblock %}
+    

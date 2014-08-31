@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+
+        <meta charset="utf-8">
+        <title>Algo Manager</title>
+        <meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width">
+        
+        <link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('icoons/apple-touch-icon-144x144-precomposed.png')}}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('icoons/apple-touch-icon-114x114-precomposed.png')}}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('icoons/apple-touch-icon-72x72-precomposed.png')}}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('icoons/apple-touch-icon-57x57-precomposed.png')}}">
+        
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+        
+        {% stylesheets debug=false filter='lessphp' output='css/login.css'
+        '@AlgorithmSecurityBundle/Resources/less/main.less'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+                
+    </head>
+    <body>
+                
+                
+        <section id="login">
+            
+            <h1>
+                <object type="image/svg+xml" data="{{ asset('bundles/wiki/assets/svg/algo_logo.svg') }}" width="120" height="42"></object>
+            </h1>
+
+            <form action="{{ path('login_check') }}" method="post">
+
+                {% if login != '' %}
+                <input type="text" id="username" name="_username" value="{{ login }}" />
+                <input type="password" id="password" name="_password" value="{{ password }}" />
+                {% else %}
+                <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Email" />
+                <input type="password" id="password" name="_password" placeholder="Mot de passe" />
+                {% endif %}
+
+                <input type="submit" value="Se connecter" id="send" />
+                
+            </form>
+
+        </section>
+                              
+        
+        {% if error %}                
+        <section id='return'>{{ error.message }}</section>  
+        {% endif %}
+            
+        {% for message in app.session.flashbag.get('valide') %}
+            <section id='returnValide'>
+                {{ message }}
+            </section> 
+        {% endfor %}
+                
+    </body>
+</html>

@@ -1,0 +1,138 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("serveurs") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Paramètrer la synchronisation serveur</h1>
+    
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_servers_synchro_file', { 'id':server.id }) }}">
+    
+    <p class="actions">
+        
+        <a href="{{ path('algorithm_wiki_servers_details', { 'id':server.id }) }}" class="button">Annuler</a>
+        <input type="submit" class="button" value="Créer">
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Dossier VirtualHosts :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="text" value="/etc/apache2/sites-available" name="folder-site"/>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Synchroniser les apps :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="checkbox" name="sync-apps" checked="checked">
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Synchroniser les vhosts :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="checkbox" name="sync-vhosts" checked="checked">
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Synchroniser les erreurs Apache :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="checkbox" name="sync-errors" checked="checked">
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Dossier Apache Logs :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="text" value="/var/log/apache2/error.log" name="folder-errors"/>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">IP Serveur SQL :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="text" name="ip-sql" placeholder="127.0.0.1" required="required">
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Login SQL :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="text" name="sql-user" placeholder="root" required="required">
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Mot de passe SQL :</div>
+                </div>
+                <div class="field">
+                    <input class="field-content input-style" type="password" name="sql-password" >
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+        </ul>
+                
+    </aside>
+            
+            </form>
+    
+    {% endblock %}
+    

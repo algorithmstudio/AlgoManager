@@ -1,0 +1,22 @@
+algorithm_setup:
+    resource: "@AlgorithmSetupBundle/Resources/config/routing.yml"
+    prefix:   /setup
+
+algorithm_wiki:
+    resource: "@AlgorithmManagerBundle/Resources/config/routing.yml"
+    prefix:   /access
+    
+login:
+    pattern:   /login
+    defaults:  { _controller: AlgorithmSecurityBundle:Security:login }
+ 
+login_check:
+    pattern:   /login_check
+ 
+logout:
+    pattern:   /logout
+    
+home:
+    pattern:   /
+    defaults:  { _controller: AlgorithmSecurityBundle:Security:login }
+

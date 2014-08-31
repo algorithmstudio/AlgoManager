@@ -1,0 +1,87 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("projets") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Projets</h1>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    <p class="actions">
+        <a href="{{ path('algorithm_wiki_projects_create') }}" class="button">Ajouter un projet</a>
+        <a href="{{ path('algorithm_wiki_tasks_create') }}" class="button">Ajouter une tâche</a>
+    </p>
+    {% endif %}
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row title">
+                <span class="column">Nom du Projet</span>
+                <span class="column">Créateur</span>
+                <span class="column">Mise à jour</span>
+                <span class="column">Temps passé</span>
+                <div class="clear"></div>
+            </li>
+            
+            {% for p in projects %}
+                {% if p.private == true %}
+                   
+                    {% if p.createur.id == app.user.id %}
+                        <li class="row">
+                            <a href="{{ path('algorithm_wiki_projects_details', { 'id':p.id }) }}">
+                                <span class="column">{{ p.name }}</span>
+                                <span class="column">{{ p.createur.firstname }} {{ p.createur.name }}</span>
+                                <span class="column">{{ p.lastUpdate|date('d/m/Y H:i:s')  }}</span> 
+                                
+                                {% set TimeSpend = 0 %}
+                                {% for t in p.tasks %}
+                                    {% set TimeSpend = TimeSpend + t.timeSpend %}
+                                {% endfor %}
+                                
+                                <span class="column">{{ TimeSpend }} Heures</span>
+                                
+                                <div class="clear"></div>
+                            </a>
+                        </li>
+                    {% endif%}
+                    
+                {%else%}
+                    <li class="row">
+                        <a href="{{ path('algorithm_wiki_projects_details', { 'id':p.id }) }}">
+                            <span class="column">{{ p.name }}</span>
+                            <span class="column">{{ p.createur.firstname }} {{ p.createur.name }}</span>
+                            <span class="column">{{ p.lastUpdate|date('d/m/Y H:i:s')  }}</span>   
+                            
+                            {% set TimeSpend = 0 %}
+                                {% for t in p.tasks %}
+                                    {% set TimeSpend = TimeSpend + t.timeSpend %}
+                                {% endfor %}
+                                
+                                <span class="column">{{ TimeSpend }} Heures</span>
+                            
+                            <div class="clear"></div>
+                        </a>
+                    </li>
+                {% endif%}
+                
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% endblock %}
+    

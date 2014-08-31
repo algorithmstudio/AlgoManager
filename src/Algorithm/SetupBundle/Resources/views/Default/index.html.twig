@@ -1,0 +1,14 @@
+    {% extends "AlgorithmSetupBundle::layout.html.twig" %}
+
+    {% block body %}
+        
+        <div class="step">
+            
+            <h1>
+                <object type="image/svg+xml" data="{{ asset('bundles/wiki/assets/svg/algo_logo.svg') }}" width="120" height="42"></object>
+            </h1>
+            
+            <a href="{{ path('algorithm_setup_one') }}">Commencer l'installation</a>
+        </div>
+        
+    {% endblock %}

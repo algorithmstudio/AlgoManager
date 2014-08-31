@@ -1,0 +1,52 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("serveurs") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>{{ server.name }}</h1>
+           
+    
+    <div class="clear"></div>
+    
+    <aside class="box step">
+        
+        1. Téléchargez le ZIP <a href="{{ asset(file) }}">ici</a>
+        
+    </aside>
+        
+    <aside class="box step">
+        
+        2. Uploadez le zip sur le serveur à synchroniser et dézipper le
+        
+    </aside>
+        
+    <aside class="box step">
+        
+        3. Ajoutez le fichier server.sync.{{server.id}}.php à votre crontab
+        
+        <div class="exemple">
+            
+            <p class="title">Exemple pour une synchro tous les jours à minuit</p>
+            
+            <p class="code">
+            crontab -e<br>
+            0 0 * * * php /home/user/algo_sync/server.sync.{{server.id}}.php
+            </p>
+            
+        </div>
+        
+    </aside>
+          
+    
+    {% endblock %}
+    

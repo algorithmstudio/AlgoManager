@@ -1,0 +1,11 @@
+algorithm_setup_homepage:
+    path:     /start
+    defaults: { _controller: AlgorithmSetupBundle:Default:index }
+    
+algorithm_setup_one:
+    path:     /first-step
+    defaults: { _controller: AlgorithmSetupBundle:Default:firstStep }
+    
+algorithm_setup_two:
+    path:     /second-step
+    defaults: { _controller: AlgorithmSetupBundle:Default:secondStep }

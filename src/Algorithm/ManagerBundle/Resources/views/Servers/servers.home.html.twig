@@ -1,0 +1,36 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("serveurs") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Serveurs</h1>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    <p class="actions"><a href="{{ path('algorithm_wiki_servers_create') }}" class="button">Ajouter un serveur</a></p>
+    {% endif %}
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            {% for s in servers %}
+            <li class="row"><a href="{{ path('algorithm_wiki_servers_details', { 'id':s.id }) }}">{{ s.name }}</a></li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% endblock %}

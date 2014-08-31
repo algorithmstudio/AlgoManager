@@ -1,0 +1,84 @@
+<?php
+
+namespace Algorithm\WikiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * History
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Algorithm\WikiBundle\Entity\HistoryRepository")
+ */
+class History
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fact", type="string", length=255)
+     */
+    private $fact;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Algorithm\WikiBundle\Entity\User",cascade={"persist"})
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $createur;
+        
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Algorithm\WikiBundle\Entity\History", inversedBy="historys")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $task;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fact
+     *
+     * @param string $fact
+     * @return History
+     */
+    public function setFact($fact)
+    {
+        $this->fact = $fact;
+
+        return $this;
+    }
+
+    /**
+     * Get fact
+     *
+     * @return string 
+     */
+    public function getFact()
+    {
+        return $this->fact;
+    }
+}

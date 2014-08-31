@@ -1,0 +1,107 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("projets") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Créer un projet</h1>
+    
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_projects_create') }}" 
+          {{ form_enctype(form) }}>
+    
+    <p class="actions">
+        
+        <a href="{{ path('algorithm_wiki_projects') }}" class="button">Annuler</a>
+        <input type="submit" class="button" value="Créer">
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Nom du projet :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.name, {'attr' : {'class':'field-content input-style', 'placeholder' : 'Projet Ninja'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Plateforme :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.platform, {'attr' : {'class':'field-content input-style', 'placeholder' : 'iOS / Android / Windows / Web'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Dead Line :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.deadLine, {'attr' : {'class':'input-style date'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Projet Personnel : <div class="icon-info"></div></div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.private) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Informations :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.informations, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            {{ form_rest(form) }}
+            
+        </ul>
+                
+        
+        
+    </aside>
+            
+            </form>
+    
+    {% endblock %}
+    

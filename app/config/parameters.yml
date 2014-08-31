@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: |HOST|
+    database_port: null
+    database_name: algo_manager
+    database_user: |USER|
+    database_password: |PASSWORD|
+    mailer_transport: gmail
+    mailer_host : null
+    mailer_user: |MAIL_USER|
+    mailer_password: |MAIL_PASSWORD|
+    locale: fr
+    secret: f863191083989d1229b485017acb2b7107

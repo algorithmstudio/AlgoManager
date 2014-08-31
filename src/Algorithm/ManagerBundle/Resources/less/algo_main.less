@@ -1,0 +1,1092 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11 juil. 2014, 10:27:45
+    Author     : Nicolas Passaquet
+*/
+
+@import "algo_variables.less";
+@import "algo_button.less";
+@import "algo_checkbox.less";
+
+body
+{
+    padding: 0;
+    margin: 0;
+    font-family: @algo_font;
+    background: @algo_background_color;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.header
+{
+    background: @algo_header_color;
+    height : @algo_heigth_header;
+    line-height: @algo_height_header;
+    position : fixed;
+    width: 100%;
+    top:0;
+    z-index: 10000;
+    right:0;
+    
+    h1
+    {
+        margin: 0;
+        padding: 8px 0px 8px 20px;
+        float: left;
+        
+    }
+    
+    .display-message
+    {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 0.9em;
+        color: white;
+        text-align: center;
+        background: @notification_valid_color; 
+        height: @algo_height_header;
+        line-height: @algo_height_header;
+        z-index: -1;
+    }
+    
+    .error
+    {
+        background: @notification_error_color;
+    }
+    
+    .user
+    {
+        float: right;
+        color: white;
+        cursor: pointer;
+        font-size: 0.7em;
+        
+        span
+        {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            vertical-align: middle;
+            color: @algo_active_color;
+            display: inline-block;
+            margin: 0 30px 0 10px;
+            background: white;
+        }
+        
+        .user-expend
+        {
+            position: absolute;
+            display: none;
+            right : 30px;
+            width: 220px;
+            background: @algo_background_color ;
+            border: 1px solid #fff;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+            
+            ul
+            {
+                list-style-type: none;
+                margin:0;
+                padding:0;
+                
+                li
+                {
+                    a
+                    {
+                        padding: 8px 15px;
+                        display: block;
+                        text-decoration: none;
+                        color :@algo_font_color; 
+                        .animation-less(all, 0.3s);
+                    }
+                    
+                    a:hover
+                    {
+                        background : @algo_active_color;
+                        color :@algo_nav_active_color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.notification-valid
+{
+    background: @notification_valid_color;
+}
+
+.navigation
+{
+    width: @algo_width_navigation;
+    background: @algo_background_navigation;
+    height: 100%;
+    position:fixed;
+    top :@algo_height_header ;
+    left: 0;
+    
+    .main-navigation
+    {
+        margin: 0;
+        padding:0;
+        list-style-type: none;
+        
+        li
+        {            
+            a
+            {
+                padding: 11px 20px 10px;
+                color: @algo_nav_color;
+                text-decoration: none;
+                display: block;
+                font-size: 0.8em;
+                .animation-less(all, 0.3s);
+            }
+            
+            .active, a:hover
+            {
+                background: @algo_active_color;
+                color: @algo_nav_active_color;
+            }
+        }
+    }
+    
+    .social-navigation
+    {
+        margin: 0;
+        padding:0;
+        list-style-type: none;
+        position: fixed;
+        bottom:10px;
+        left: 10px;
+        
+        li
+        {            
+            float:left;
+            
+            a
+            {
+                padding: 10px 5px;
+                margin-right: 10px;
+                color: @algo_nav_color;
+                text-decoration: none;
+                display: block;
+                border:none;
+                .animation-less(all, 0.3s);
+            }
+            
+            .active, a:hover
+            {
+                color: @algo_active_color;
+            }
+        }
+    }
+}
+
+#wrapper
+{
+    padding: @algo_height_header 0 0 @algo_width_navigation;
+}
+
+#data-content
+{
+    padding: 30px 30px 0 30px;
+    
+    h1
+    {
+        float: left;
+        margin-top: 0;
+        min-width: 55%;
+        font-weight: 300;
+        font-size: 1.8em;
+        
+        @media only screen and (max-width : 1024px)
+        { 
+            min-width : 40%;
+        }
+        
+        a
+        {
+            text-decoration: none;
+            font-size: 0.55em;
+            color: @algo_font_color ;
+            .animation-less(all, 0.3s);
+        }
+        
+        a:hover
+        {
+            color:@algo_active_color;
+        }
+    }
+    
+    .actions
+    {
+        font-size: 1.1em;
+        float: right;
+        margin: 0;
+        
+        #search-apps
+        {
+            border: 1px solid @algo_border_color;
+            padding: 7px 15px;
+            width: 250px;
+            font-size: 0.7em;
+            background: @algo_background_color;
+      
+        
+        }
+    }
+    
+    .first
+        {
+            margin-bottom: 15px;
+        }
+    
+    .box
+    {
+        margin-bottom:30px;
+        
+        ul
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            
+            .row
+            {                
+                background: @algo_box_color;
+                border-bottom: 1px solid @algo_background_color;
+                
+                a
+                {
+                    padding: 15px;
+                    display: block;
+                    text-decoration: none;
+                    font-size: 0.8em;
+                    color: @algo_font_color;
+                    .animation-less(all, 0.3s);
+                    
+                    span
+                    {
+                        float: right;
+                    }
+                    
+                    .column
+                    {
+                        float: left;
+                        display: block;
+                        width: 20%;
+                        overflow:hidden;
+                        text-overflow: ellipsis;
+                        white-space:nowrap; 
+                        height:18px;
+                    }
+                }
+                
+                a:hover
+                {
+                    box-shadow : 3px 0px 0 @algo_active_color inset;
+                    color : @algo_active_color;
+                }
+                
+                .label, .version
+                {
+                    padding: 15px 1%;
+                    width: 16%;
+                    font-size: .8em;
+                    float: left;
+                    
+                    .label-content, label-content-icon
+                    {
+                        padding: 10px;
+                        height:18px;
+                        overflow:hidden;
+                        text-overflow: ellipsis;
+                        white-space:nowrap; 
+                    }
+                    
+                    .label-content-icon
+                    {
+                        overflow:unset;
+                        text-overflow: unset;
+                        white-space:unset;
+                        
+                        .data-label
+                        {
+                            float: left;
+                            padding: 10px;
+                        }
+                        
+                        .icon-info
+                        {
+                            float: right;
+                            cursor: pointer;
+                            padding: 10px;
+                            position: relative;
+                            
+                            .data-explain
+                            {
+                                top: -13px;
+                                left: 30px;
+                                z-index: 10000;
+                                position: absolute;
+                                display: none;
+                                font-family: 'Roboto';
+                                height: auto;
+                                padding: 15px;
+                                width: 200px;
+                                line-height: 110%;
+                                border-radius: @algo_radius;
+                                border: 1px solid @algo_border_color;
+                                background: @algo_box_color;
+                            }
+                        }
+                        
+                        .icon-info:hover
+                        {
+                            .data-explain
+                            {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                
+                .comment
+                {
+                    padding: 15px 1.5% ;
+                    font-size: 0.75em;
+                    font-weight: 700;
+                    border-bottom: 1px solid @algo_border_color;
+                    
+                    .date
+                    {
+                        font-weight: 400;
+                        float: right;
+                        font-size: 1em;
+                    }
+                    
+                }
+                
+                .comment-message
+                {
+                    padding: 15px 1.5%;
+                    font-size: 0.75em;
+                }
+                
+                .field
+                {
+                    width: 80%;
+                    padding: 15px 1%;
+                    float:left;
+                    font-size:0.8em;
+                        
+                    .field-content
+                    {
+                        padding: 10px;
+                        overflow:hidden;
+                        background: @algo_background_color;
+                        border-radius: @algo_radius;
+                        text-overflow: ellipsis;
+                        white-space:nowrap; 
+                        height:18px;                        
+                    }
+                    
+                    .text-area
+                    {
+                        text-overflow: unset;
+                        height: auto;
+                        overflow: unset;
+                        white-space: unset;
+                    }
+                    
+                    .input-style
+                    {
+                        border : 1px solid @algo_border_color;
+                        width:100%;
+                        height: auto;
+                    }
+                    
+                    select
+                    {
+                        width: 100%;
+                        padding: 10px;
+                    }
+                    
+                    .select-style
+                    {
+                        label
+                        {
+                            display: none;
+                        }
+                    }
+                    
+                    .password
+                    {
+                        width: 80%;
+                    }
+                    
+                    .button
+                    {
+                        width: 18%;
+                        cursor: pointer;
+                        margin-left: 0;
+                        padding: 10px 0;
+                        font-size: 1.01em;
+                        text-align: center;
+                    }
+                    
+                    .date
+                    {
+                        border:none;
+                        
+                        select
+                        {
+                            width: 20%;
+                            border: none;
+                            border: 1px solid @algo_border_color;
+                            border-radius: @algo_radius;
+                            margin-right: 3%;
+                            background: @algo_background_color ;
+                        }
+                    }
+                }
+                
+                .textarea
+                {
+                    min-height: 175px;
+                }
+                
+                .send
+                {
+                    margin: 0 20px 20px 0;
+                }
+                                
+                .vhost
+                {
+                    padding: 20px 3%;
+                    border: none;
+                    width: 100%;
+                    min-height: 450px;
+                }
+            }
+            
+            .update
+            {
+                color : @algo_active_color;
+                
+            }
+            
+            .apache-error
+            {
+                box-shadow : 3px 0px 0 @apache_error_color  inset;
+            }
+            
+            .apache-warn
+            {
+                box-shadow : 3px 0px 0 @apache_warn_color  inset;
+            }
+            
+            .title
+            {
+                padding: 15px 1.5%;
+                background: @algo_box_color;
+                border-bottom: 1px solid @algo_background_color;
+                font-size: 1.05em;
+                font-weight: 700;
+                
+                .button{
+                    background: @algo_box_color;
+                    font-size: 0.75em;
+                }
+                
+                .button:hover
+                {
+                    background: @algo_active_color;
+                }
+                
+                .column
+                {
+                    float: left;
+                    font-size: 0.8em;
+                    display: block;
+                    width: 20%;
+                    overflow:hidden;
+                    text-overflow: ellipsis;
+                    white-space:nowrap; 
+                    height:18px;
+                }
+                
+                span
+                {
+                    font-weight: 300;
+                    float: right;
+                    font-size: .9em;
+                }
+            }
+            
+            .row:nth-child(even)
+            {
+                background: #FAFAFA;
+            }
+        }
+        
+        .add-server-data
+        {
+            a
+            {
+                width: 100%;
+                min-height: 344px;
+                background: @algo_box_color;
+                text-align: center;
+                font-size: 1.3em;
+                font-weight: 300;
+                line-height: 344px;
+                text-decoration: none;
+                display: block;
+                color: @algo_font_color;
+                .animation-less(all, 0.3s);
+            }
+            
+            a:hover
+            {
+                background:@algo_active_color ;
+                color:@algo_nav_active_color;
+            }
+        }
+    }
+    
+    #update
+    {
+        background: @algo_box_color;
+        padding: 15px;
+        font-size: 0.8em;
+        margin: 0 0 15px;
+        display:none;
+        
+        form
+        {
+            margin: 0;
+            
+            label
+            {
+                
+            }
+            
+            select, input
+            {
+                padding: 5px 10px;
+                font-size: 0.8em;
+                width: 20%;
+            }
+            
+            select
+            {
+                margin-right: 20px;
+            }
+        }
+        
+        .button
+        {
+            background: @algo_background_color;
+            font-size: 0.9em;
+            width: 15%;
+        }
+
+        .button:hover
+        {
+            background: @algo_active_color;
+            color: @algo_nav_active_color;
+        }
+    }
+    
+    .light
+    {
+       float: left;
+       margin-bottom: 30px;
+       width: 49%; 
+       
+       ul
+       {
+            .row
+            {
+                .field
+                {
+                    width: 56%;
+                    padding: 15px 3%;
+
+                    .field-content
+                    {
+                        min-height: 0;
+                        padding: 0;
+                        background: none;
+                        text-align: right;
+                    }
+                }
+                
+                .label
+                {
+                    width: 32%;
+                    padding: 15px 3%;
+
+                    .label-content
+                    {
+                        min-height: 0;
+                        padding: 0;
+                        background: none;
+                    }
+                }
+            }
+            
+            .title
+            {
+                padding: 15px 3%;
+            }
+       }
+    }
+    
+    .data
+    {
+        height: 294px;
+        background: @algo_box_color;
+        position: relative;
+        
+        #achievement
+        {
+            width: 200px;
+            margin: 0 auto;
+            
+        }
+        
+        #achievement-content
+        {
+            position: absolute;
+            top: 0;
+            font-weight: 300;
+            font-size: 1.6em;
+            z-index: 100;
+            line-height: 294px;
+            text-align: center;
+            width: 100%;
+            color: @algo_active_color;
+        }
+        
+        .button
+        {
+            position: absolute;
+            z-index: 1000;
+            top: 20;
+            right: 20;
+            font-size: 0.75em;
+            background: @algo_box_color;
+        }
+        
+        .button:hover
+        {
+            background: @algo_active_color;
+        }
+        
+        .select-achievement
+        {
+            position: absolute;
+            top: 60px;
+            z-index: 1000;
+            width: 100px;
+            right: 20;
+            padding: 5px;
+            border-radius: @algo_radius;
+            border: 1px solid @algo_border_color;
+        }
+    }
+    
+    .step
+    {
+        padding: 20px;
+        margin-bottom: 20px;
+        background :@algo_box_color ;
+        
+        h2
+        {
+            font-weight: 300;
+        }
+        
+        .noMargintop
+        {
+            margin-top: 0px;
+        }
+        
+        .exemple
+        {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: @algo_radius;
+            background: @algo_background_color;
+            
+            p
+            {
+                margin: 0;
+                font-size: 0.75em;
+            }
+            
+            .title
+            {
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+        }
+    }
+    
+    .light:nth-child(even)
+    {
+        margin: 0 2% 0 0;
+    }
+    
+    .dash:nth-child(even)
+    {
+        margin: 0 0 30px 2%;
+    }
+    
+    .dash
+    {
+        ul{
+            li
+            {
+                a
+                {
+                    .ping
+                    {
+                        float: right;
+                        
+                        span
+                        {
+                            margin-left: 10px;
+                            line-height: 18px;
+                        }
+                        
+                        .valid
+                        {
+                            color : @notification_valid_color;
+                        }
+                        
+                        .error
+                        {
+                            color : @apache_error_color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .search
+    {
+        min-height: 300px; 
+    }
+    
+    .marginTop
+    {
+        margin-top: 20px;
+    }
+    
+    .table
+    {
+        width: 100%;
+        
+        ul
+        {
+            .row
+            {
+                .label
+                {
+                    width: 20%;
+                    
+                    .label-content
+                    {
+                        padding: 0;
+                    }
+                }
+                
+                .field
+                {
+                    width: 50%;
+                    
+                    .field-content
+                    {
+                        background: none;
+                        padding: 0px;
+                    }
+                }
+
+                .version
+                {
+                    width: 16%;
+                    
+                    .label-content
+                    {
+                        padding: 0;
+                    }
+                }
+            }
+            
+            .col
+            {
+                width: 20%;
+                float: left;
+                
+                .col-content
+                {
+                    font-size: 0.8em;
+                    padding: 20px;
+                    
+                    .button
+                    {
+                        float: none;
+                        padding: 4px 0;
+                        font-size: 0.9em;
+                        text-align: center;
+                    }
+                    
+                    .button:hover
+                        {
+                        color: @algo_nav_active_color;
+                    }
+                }
+            }
+        }        
+        
+    }
+    
+    .date
+    {
+        font-size: 0.75em;
+        color: @algo_nav_color;
+    }
+    
+    .light-form
+    {
+        ul
+        {
+            .row
+            {
+                .label
+                {
+                    width: 20%;
+                }
+                
+                .field
+                {
+                    width: 68%;
+                    
+                    .input-style
+                    {
+                        padding: 10px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.breadcrumb
+{
+    height: @algo_height_bread;
+    line-height: @algo_height_bread;
+    background: @algo_bread_background_color;
+    position:relative;
+    
+    ul
+    {
+        list-style-type:none;
+        padding : 0;
+        margin : 0;
+        
+        li
+        {
+            float: left;
+            
+            a
+            {
+                display: block;
+                padding: 0 25px 0 20px;
+                font-size: 0.85em;
+                text-decoration: none;
+                color : @algo_nav_color;
+                .animation-less(all, 0.3s);
+                background: url('/bundles/wiki/assets/svg/breadcrumb.svg') no-repeat scroll right center rgba(0, 0, 0, 0);    
+            }
+            
+            .active, a:hover
+            {
+                color: @algo_active_color;
+            }
+        }
+    }
+    
+    #search-input
+    {
+        position: absolute;
+        top: 0;
+        height: @algo_height_bread ;
+        border :none;
+        font-family: @algo_font;
+        background: @algo_bread_background_color;
+        text-align: right;
+        right : 30px;
+    }
+}
+
+.algo-info
+{
+    position: fixed;
+    width: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0,0,0,0.3);
+    
+    .algo-info-details
+    {
+        position: relative;
+        width: 280px;
+        padding: 40px 15px 15px;
+        margin: 10% auto;
+        font-size: 0.8em;
+        background: #FFF;
+        border-radius:@algo_radius;
+     
+        .close-infos
+        {
+            cursor: pointer;
+            font-size: 0.75em;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        p
+        {
+            margin-top: 0;
+            
+            a
+            {
+                color : @algo_font_color;
+                text-decoration: none;
+                font-weight: 700;
+            }
+        }
+        
+        ul
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            
+            li
+            {
+                margin-right: 20px;
+                float:left;
+                a
+                {
+                    color:@algo_font_color;
+                    text-decoration: none;
+                    
+                    img
+                    {
+                        border: none;
+                    }
+                }
+                
+                span
+                {
+                    font-size : 2.2em;
+                }
+            }
+        }
+    }
+}
+
+.tutorial
+{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0,0,0,0.3);
+    
+    .tutorial-details
+    {
+        width: 650px;
+        padding: 20px;
+        margin: 10% auto 0;
+        background: #FFF;
+        
+        h2
+        {
+            font-weight: 300;
+            margin-top: 0;
+            color: @algo_active_color;
+            margin-bottom: 10px;
+        }
+        
+        .actions
+        {
+            margin-top: 30px;
+            font-size: 1.1em;
+        }
+        
+        
+        
+        p
+        {
+            margin-top: 0;
+            font-size: .8em;
+            margin-bottom: 30px;
+        }
+        
+        ul
+        {
+            list-style-type: none;
+            margin:0;
+            padding:0;
+            
+            li
+            {
+                float: left;
+                width: 33%;
+                text-align:center;
+                font-size : 0.8em;
+                
+                span
+                {
+                    margin: 0 auto 20px;
+                    width: 50px;
+                    height: 50px;
+                    line-height: 50px;
+                    font-size: 1.5em;
+                    font-weight: 300;
+                    text-align: center;
+                    border-radius: 50%;
+                    display: block;
+                    background: @algo_active_color;
+                    color: #FFF;
+                }
+            }
+        }
+    }
+}

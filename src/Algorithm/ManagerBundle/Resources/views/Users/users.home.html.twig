@@ -1,0 +1,34 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("users") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Utilisateurs</h1>
+    
+    <p class="actions"><a href="{{ path('algorithm_wiki_users_create') }}" class="button">Ajouter un utilisateur</a></p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            {% for u in users %}
+            <li class="row"><a href="{{ path('algorithm_wiki_users_details', { 'id':u.id }) }}">{{ u.firstname }} {{ u.name }}</a></li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% endblock %}

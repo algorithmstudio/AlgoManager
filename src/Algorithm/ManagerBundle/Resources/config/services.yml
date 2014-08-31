@@ -1,0 +1,6 @@
+parameters:
+    algorithm_wiki.key: a2gwhkqC
+
+services:
+    algorithm_wiki.crypto:
+        class: Algorithm\ManagerBundle\Crypto\AlgoCrypt

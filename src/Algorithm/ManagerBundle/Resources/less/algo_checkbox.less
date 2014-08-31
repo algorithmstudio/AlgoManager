@@ -1,0 +1,64 @@
+/*
+Copyright (C) 2014 Nicolas Passaquet <nicolas.passaquet@gmail.com>
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+*/
+/* 
+    Created on : 12 août 2014, 21:25:49
+    Author     : Nicolas Passaquet <nicolas.passaquet@gmail.com>
+*/
+
+.chekbox
+{
+    width: 55px;
+    height: 30px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.chekbox #hiddenCheck
+{
+    display: none;
+}
+
+.chekbox .checkON,
+.chekbox .checkOFF
+{
+    position: absolute;
+    width: 55px;
+    padding: 5px 0;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    transition:all 0.5s ease-in-out;
+    font-size:1.1em;
+    -webkit-transition:all 0.5s ease-in-out;
+    -moz-transition:all 0.5s ease-in-out;
+}
+
+.chekbox .checkON
+{
+    background-color: @notification_valid_color;
+    left : -55px;
+}
+
+.chekbox .checkOFF
+{
+    background-color: #e6e6e6;
+    left: 0px;
+    color:@algo_font_color;
+}

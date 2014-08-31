@@ -1,0 +1,47 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("projets") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>{{ task.name }} - Historique</h1>
+    
+    <p class="actions"></p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            {% for h in task.historys %}
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">{{ h.created|date('d/m/Y H:i:s') }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ h.createur.firstname }} {{ h.createur.name }} {{ h.fact }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            {% endfor %}
+                        
+        </ul>
+        
+    </aside>
+                
+    {% endblock %}
+    

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style type="text/css">
+
+        body
+        {
+            background-color: #e6e6e6;
+        }
+
+        .body
+        {
+            border-radius: 5px;
+            border: 1px solid #D4D4D4;
+            width: 480px;
+            padding: 20px;
+            color: #333;
+            font-family: Arial;
+            margin: 30px auto;
+            background-color: #FFF;
+        }
+
+        .body h1
+        {
+            font-size: 0.9em;
+            border-bottom: 1px solid #D4D4D4;
+            padding-bottom: 20px;
+        }
+
+        .body .projet
+        {
+            margin-top: 20px;
+            font-size: 1.3em;
+            color: #1A95CF;
+        }
+
+        .body h1 a
+        {
+            font-size: 0.8em;
+            border-radius: 5px;
+            float: right;
+            color: #333;
+            text-decoration: none;
+            padding: 6px 10px;
+            background-color: #F2F2F2;
+        }
+
+        .body .date-task
+        {
+            font-size: 0.7em;
+        }
+
+        .body p
+        {
+            margin: 10px 0;
+        }
+
+        .body .description
+        {
+            margin-top: 20px;
+            font-size: 0.75em;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="body">
+
+        <h1>
+            <img src="http://wiki.algorithmstudio.fr/mailcontent/algo.png">            
+        </h1>
+
+        <p class="projet">Nom du projet : {{ nameProject }}</p>
+        <p>Nom de la tâche : {{ nameTask }}</p>
+        <p class="date-task">Créer par {{ taskCreateur }} le {{ taskDate|date('D/m/Y à h:i:s') }}</p>
+        <p class="description">Description : {{ taskDescription }}</p>
+        
+        <a href="http://wiki.algorithmstudio.fr">Me connecter</a>
+
+    </div>  
+
+</body>
+</html>

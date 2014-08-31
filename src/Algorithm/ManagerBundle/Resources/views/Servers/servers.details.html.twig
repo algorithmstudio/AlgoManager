@@ -1,0 +1,263 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("serveurs") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+        <h1>{{ server.name }}</h1>
+    
+        
+        <p class="actions">
+
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('algorithm_wiki_servers_create') }}" class="button">Ajouter un serveur</a>
+            <a href="{{ path('algorithm_wiki_servers_update', { 'id':server.id } ) }}" class="button">Modifier ce serveur</a>
+            <a href="{{ path('algorithm_wiki_servers_delete', { 'server_id':server.id }) }}" class="button">Supprimer ce serveur</a>
+            {% endif %}
+            
+        </p>
+        
+    
+    <div class="clear"></div>
+    
+    <aside class="box light">
+        
+        <ul>
+            
+            <li class="title">
+            Informations
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Login :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.user }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Mot de passe :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.password }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">IP :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.ip }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Hébergeur :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.hebergeur }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Processeur :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.processeur }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Bande passante :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.bandePassante }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Mémoire :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ server.memoire }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+                        
+        </ul>
+        
+    </aside>
+                
+    <aside class="box light">
+        
+        {% if server.applications|length > 0 %}
+        <ul>
+            
+            <li class="title">
+            Applications
+            <a class="button" href="{{ path('algorithm_wiki_servers_apps', {'id':server.id}) }}">Voir toutes les apps</a>
+            </li>
+                
+        {% for a in server.applications|slice(0, 7) %}
+            
+            <li class="row">
+
+                <div class="label">
+                    <div class="label-content">{{ a.name }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ a.description }}</div>
+                </div>
+                <div class="clear"></div>
+
+            </li>
+
+        {% endfor %}
+    
+        </ul>
+        {% else %}
+            
+            <ul>
+            
+                <li class="title">
+                Applications
+                </li>
+            </ul>
+        
+            <div class="add-server-data">
+                
+                <a href="{{ path('algorithm_wiki_servers_synchro_file', { 'id':server.id }) }}">Synchronisez votre serveur</a>
+                
+            </div>
+            
+        {% endif %}
+    
+    </aside>
+    
+    <aside class="box light">
+        
+        {% if server.virtualhosts|length > 0 %}
+        <ul>
+            
+            <li class="title">
+            VirtualHosts
+            <a class="button" href="#">Voir tous les virtualhosts</a>
+            </li>
+                
+        {% for v in server.virtualhosts|slice(0, 7) %}
+            
+            <li class="row">
+
+                <a href="{{ path('algorithm_wiki_servers_virtualhost_details', { 'id':v.id }) }}">{{ v.name }}</a>
+
+            </li>
+
+        {% endfor %}
+    
+        </ul>
+        {% else %}
+            
+            <ul>
+            
+                <li class="title">
+                VirtualHosts
+                </li>
+            </ul>
+        
+            <div class="add-server-data">
+                
+                <a href="{{ path('algorithm_wiki_servers_synchro_file', { 'id':server.id }) }}">Synchronisez votre serveur</a>
+                
+            </div>
+            
+        {% endif %}
+    
+    </aside>
+        
+    <aside class="box light">
+        
+        {% if logs|length > 0 %}
+        <ul>
+            
+            <li class="title">
+            Apache Errors
+            <a class="button" href="">Voir toutes les erreurs</a>
+            </li>
+                
+        {% for l in logs|slice(0, 7) %}
+            
+            <li class="row {%if l.type == "error"%}apache-error{%else%}apache-warn{%endif%}">
+
+                <div class="label">
+                    <div class="label-content">{{ l.date|date('d/m/Y - H:i:s') }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ l.message }}</div>
+                </div>
+                <div class="clear"></div>
+
+            </li>
+
+        {% endfor %}
+    
+        </ul>
+        
+        {% else %}
+            
+            <ul>
+            
+                <li class="title">
+                Apache Errors
+                </li>
+            </ul>
+        
+            <div class="add-server-data">
+                
+                <a href="{{ path('algorithm_wiki_servers_synchro_file', { 'id':server.id }) }}">Synchronisez votre serveur</a>
+                
+            </div>
+            
+        {% endif %}
+    
+    </aside>
+       
+    
+    {% endblock %}
+    

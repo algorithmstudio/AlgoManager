@@ -1,0 +1,427 @@
+<?php
+
+namespace Algorithm\ManagerBundle\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Algorithm\ManagerBundle\Entity\UserRepository")
+ */
+class User implements UserInterface, \Serializable
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255)
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, unique = true)
+     */
+    private $email;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="firstConnexion", type="boolean")
+     */
+    private $firstConnexion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(name="salt", type="string", length=255)
+     */
+    private $salt;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255)
+     */
+    private $username;
+        
+    /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles;
+        
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastConnexion", type="datetime")
+     */
+    private $lastConnexion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastConnexionDelta", type="datetime")
+     */
+    private $lastConnexionDelta;
+    
+    /**     
+     * @ORM\OneToMany(targetEntity="Algorithm\ManagerBundle\Entity\IP", mappedBy="user", cascade={"persist", "remove"} )
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $ips;
+    
+    /**
+    * @ORM\OneToOne(targetEntity="Algorithm\ManagerBundle\Entity\Settings",cascade={"persist", "remove"})
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $settings;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="search", type="string", length=255, nullable=true)
+     */
+    private $search;
+    
+    public function __construct() 
+    {
+        $this->roles            = array('ROLE_ADMIN');
+        $this->salt             = "";
+        $this->lastConnexion    = new \DateTime;
+        $this->firstConnexion   = true;
+        $this->lastConnexionDelta = new \DateTime;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return User
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string 
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+      return $this->username;
+    }
+    
+    public function setSalt($salt)
+    {
+      $this->salt = $salt;
+      return $this;
+    }
+
+    public function getSalt()
+    {
+      return $this->salt;
+    }
+
+    public function setRoles(array $roles)
+    {
+      $this->roles = $roles;
+      return $this;
+    }
+
+    public function getRoles()
+    {
+      return $this->roles;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+    
+    public function serialize()
+    {
+        return serialize(array($this->id,$this->email,$this->password));
+    }
+
+    public function unserialize($data)
+    {
+        list($this->id,$this->mail, $this->password) = unserialize($data);
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return Admin
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Set lastConnexion
+     *
+     * @param \DateTime $lastConnexion
+     * @return Admin
+     */
+    public function setLastConnexion($lastConnexion)
+    {
+        $this->lastConnexion = $lastConnexion;
+
+        return $this;
+    }
+
+    /**
+     * Get lastConnexion
+     *
+     * @return \DateTime 
+     */
+    public function getLastConnexion()
+    {
+        return $this->lastConnexion;
+    }
+    
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Admin
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set search
+     *
+     * @param string $search
+     * @return User
+     */
+    public function setSearch($search)
+    {
+        $this->search = $search;
+
+        return $this;
+    }
+
+    /**
+     * Get search
+     *
+     * @return string 
+     */
+    public function getSearch()
+    {
+        return $this->search;
+    }
+
+    /**
+     * Add ips
+     *
+     * @param \Algorithm\ManagerBundle\Entity\IP $ips
+     * @return User
+     */
+    public function addIp(\Algorithm\ManagerBundle\Entity\IP $ips)
+    {
+        $this->ips[] = $ips;
+
+        return $this;
+    }
+
+    /**
+     * Remove ips
+     *
+     * @param \Algorithm\ManagerBundle\Entity\IP $ips
+     */
+    public function removeIp(\Algorithm\ManagerBundle\Entity\IP $ips)
+    {
+        $this->ips->removeElement($ips);
+    }
+
+    /**
+     * Get ips
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIps()
+    {
+        return $this->ips;
+    }
+
+    /**
+     * Set settings
+     *
+     * @param \Algorithm\ManagerBundle\Entity\Settings $settings
+     * @return User
+     */
+    public function setSettings(\Algorithm\ManagerBundle\Entity\Settings $settings = null)
+    {
+        $this->settings = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Get settings
+     *
+     * @return \Algorithm\ManagerBundle\Entity\Settings 
+     */
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    /**
+     * Set firstConnexion
+     *
+     * @param boolean $firstConnexion
+     * @return User
+     */
+    public function setFirstConnexion($firstConnexion)
+    {
+        $this->firstConnexion = $firstConnexion;
+
+        return $this;
+    }
+
+    /**
+     * Get firstConnexion
+     *
+     * @return boolean 
+     */
+    public function getFirstConnexion()
+    {
+        return $this->firstConnexion;
+    }
+
+    /**
+     * Set lastConnexionDelta
+     *
+     * @param \DateTime $lastConnexionDelta
+     * @return User
+     */
+    public function setLastConnexionDelta($lastConnexionDelta)
+    {
+        $this->lastConnexionDelta = $lastConnexionDelta;
+
+        return $this;
+    }
+
+    /**
+     * Get lastConnexionDelta
+     *
+     * @return \DateTime 
+     */
+    public function getLastConnexionDelta()
+    {
+        return $this->lastConnexionDelta;
+    }
+}

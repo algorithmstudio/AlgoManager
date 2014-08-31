@@ -1,0 +1,99 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("clients") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>{{ client.name }}</h1>
+    
+    <p class="actions">
+        
+        <a href="{{ path('algorithm_wiki_clients_account_create') }}" class="button">Ajouter un compte</a>
+        <a href="{{ path('algorithm_wiki_clients_update', { 'client_id':client.id } ) }}" class="button">Modifier ce client</a>
+        <a href="{{ path('algorithm_wiki_clients_delete', { 'client_id':client.id }) }}" class="button">Supprimer ce client</a>
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Nom :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ client.name }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Activité :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ client.activity }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Contact :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ client.contact }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Mail :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ client.mail }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Informations :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ client.informations }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+        </ul>
+        
+    </aside>
+                
+    <p class="date">Créer le {{ client.created|date('d/m/Y') }} à {{ client.created|date('H:i:s') }} par {{ client.createur.firstname }} {{ client.createur.name }}</p>
+    
+    {% endblock %}
+    

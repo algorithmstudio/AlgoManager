@@ -1,0 +1,37 @@
+
+    {% macro navigation(current = "dashboard") %}
+        
+    <nav class="navigation">
+
+        <ul class="main-navigation">
+
+            {% if is_granted('ROLE_VIEWER') %}
+            <li class="item-nav"><a {% if current == "dashboard" %}class="active"{% endif %} href="{{ path('algorithm_wiki_homepage') }}">Dashboard</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_VIEWER') %}
+            <li class="item-nav"><a {% if current == "clients" %}class="active"{% endif %} href="{{ path('algorithm_wiki_clients') }}">Clients</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_PROJECT') %}
+            <li class="item-nav"><a {% if current == "projets" %}class="active"{% endif %} href="{{ path('algorithm_wiki_projects') }}">Projets</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_VIEWER') %}
+            <li class="item-nav"><a {% if current == "serveurs" %}class="active"{% endif %} href="{{ path('algorithm_wiki_servers') }}">Serveurs</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <li class="item-nav"><a {% if current == "users" %}class="active"{% endif %} href="{{ path('algorithm_wiki_users') }}">Utilisateurs</a></li>
+            {% endif %}
+
+        </ul>
+            
+        <ul class="social-navigation">
+
+            <li><a target="_blank" href="https://github.com/algorithmstudio" title="Github"><span class="icon-github"></span></a></li>
+            <li><a target="_blank" href="https://twitter.com/_MyDudeness" title="Twitter"><span class="icon-twitter"></span></a></li>
+            <li><a target="_blank" href="http://fr.linkedin.com/pub/nicolas-passaquet/14/a63/602?trk=shareTw" title="Linked"><span class="icon-linkedin"></span></a></li>
+            <li><a href="" id="info-display" title="Infos"><span class="icon-info"></span></a></li>
+
+        </ul>
+
+    </nav>
+    
+    {% endmacro %}

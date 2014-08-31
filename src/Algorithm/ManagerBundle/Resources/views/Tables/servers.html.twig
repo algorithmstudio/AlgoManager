@@ -1,0 +1,77 @@
+
+    <aside class="box table">
+        
+        <ul>
+            
+            <li class="title">IP Serveurs :</li>
+            
+            {% for s in servers %}
+            
+            <li class="row">
+
+                <div class="col">
+                    <div class="col-content">{{ s.name }}</div>
+                </div>
+                
+                <div class="col">
+                    <div class="col-content">{{ s.ip }}</div>
+                </div>
+                
+                <div class="col">
+                    <div class="col-content">{{ s.hebergeur }}</div>
+                </div>
+                
+                 <div class="col">
+                    <div class="col-content">{{ s.createur.firstname }} {{ s.createur.name }}</div>
+                </div>
+                
+                <div class="col">
+                    <div class="col-content">
+                    {% if s.ip != null %}
+                        <a link="{{ path('algorithm_wiki_servers_ping', { 'id':s.id }) }}" ip="{{ s.ip }}" class="button ping-button">Ping</a>
+                    {% endif %}
+                    </div>
+                </div>
+                
+                <div class="clear"></div>
+
+            </li>
+            
+            {% endfor %}
+    
+        </ul>
+    
+    </aside>
+    
+    <script type="text/javascript">
+
+        $('.ping-button').click( onClickPingButton );
+        
+        function onClickPingButton()
+        {
+            console.log('click');
+            
+            $this = $(this);
+
+            $.ajax({
+                url: $(this).attr('link'), 
+                type: 'GET', 
+                success: function(data) 
+                { 
+                    var json = JSON.parse(data);
+                    var classe = (!json[1]) ? '' : "error"; 
+                    
+                    $('header').append('<span class="display-message '+ classe +'">'
+                            +$this.attr('ip') +" | "+ json[0]
+                            +'</span>');
+                    
+                    setTimeout(removeNotification, 5000);
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    console.log(errorThrown + " " + textStatus);
+                }
+            });
+        }
+
+    </script>

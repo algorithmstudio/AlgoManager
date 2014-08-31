@@ -1,0 +1,42 @@
+
+    
+    {% extends "AlgorithmSetupBundle::layout.html.twig" %}
+
+    {% block body %}
+        
+        <div class="step">
+            
+            <h1>
+                <object type="image/svg+xml" data="{{ asset('bundles/wiki/assets/svg/algo_logo.svg') }}" width="120" height="42"></object>
+            </h1>
+            
+            <form action="{{ path('algorithm_setup_two') }}" method="POST" {{ form_enctype(form) }}>
+            
+                {{ form_widget(form.firstname, {'attr' : {'placeholder':'Prénom'}}) }}
+                {{ form_widget(form.name, {'attr' : {'placeholder':'Nom'}}) }}
+                {{ form_widget(form.email, {'attr' : {'placeholder':'Email de l\'admin'}}) }}
+                {{ form_widget(form.password, {'attr' : {'placeholder':'Mot de passe admin'}}) }}
+                <input type="password" name="confirm_password" placeholder="Confirmer le mot de passe admin" required/>
+                
+                <a class="back" href="{{ path('algorithm_setup_homepage') }}">Retour</a>
+                <input type="submit" id="send" value="Suivant"/>
+                
+                {{ form_rest(form) }}
+                
+            </form>
+            
+        </div>
+                
+        <div class="path">
+
+            <ul>
+
+                <li><span>1</span> Base de donnée</li>
+                <li class="active"><span>2</span> Administrateur</li>
+                <div class="clear"></div>
+
+            </ul>
+
+        </div>
+        
+    {% endblock %}

@@ -1,0 +1,95 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("users") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>{{ user.firstname }} {{ user.name }} - Édition</h1>
+    
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_users_update', { 'id':user.id }) }}" 
+          {{ form_enctype(form) }}>
+    
+    <p class="actions">
+        
+        <a href="{{ path('algorithm_wiki_users') }}" class="button">Annuler</a>
+        <input type="submit" class="button" value="Modifier">
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Nom :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.name, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Prénom :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.firstname, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+                        
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Email :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.email, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Profil d'accès :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.roles, {'attr' : {'class':'select-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+                        
+            {{ form_rest(form) }}
+            
+        </ul>
+                
+        
+        
+    </aside>
+            
+            </form>
+    
+    {% endblock %}
+    

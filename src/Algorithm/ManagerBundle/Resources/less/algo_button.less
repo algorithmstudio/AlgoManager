@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11 juil. 2014, 12:36:21
+    Author     : Nicolas Passaquet
+*/
+
+.button
+{
+    padding: 4px 20px;
+    border-radius: @algo_radius;
+    font-size: .6em;
+    float: right;
+    margin-left: 20px;
+    font-weight: 300;
+    color: @algo_font_color;
+    text-decoration: none;
+    border: 1px solid @algo_border_color;
+    .animation-less(all, 0.3s);
+    cursor: pointer;
+}
+
+.button:hover
+{
+    border: 1px solid @algo_active_color;
+    background: @algo_active_color;
+    color : @algo_nav_active_color;
+}
+

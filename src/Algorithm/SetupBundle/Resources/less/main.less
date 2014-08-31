@@ -1,0 +1,176 @@
+/*
+The MIT License
+
+Copyright 2014 Sammy Guergachi <sguergachi at gmail.com>.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/* 
+    Created on : 1 août 2014, 18:42:18
+    Author     : Nicoas Passaquet
+*/
+
+.animation-less(@property : all, @duration: 0.5s)
+{
+    transition:@property @duration ease-in-out;
+    -webkit-transition:@property @duration ease-in-out;
+    -moz-transition:@property @duration ease-in-out;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background: #292f33;
+    font-family: 'Roboto';
+}
+
+.clear
+{
+    clear: both
+}
+
+
+#wrapper
+{
+    .step
+    {
+        width: 300px;
+        text-align: center;
+        margin: 10% auto;
+        
+        h1
+        {
+            margin-bottom: 30px;
+        }
+        
+        a, #send
+        {
+            display: block;
+            color: #292f33;
+            background:#FFF;
+            padding: 10px 15px;
+            font-size: 0.8em;
+            border-radius: 3px;
+            text-decoration: none;
+            .animation-less();
+        }
+        
+        a:hover, #send:hover
+        {
+            color:#FFF;
+            background :#1a95cf;
+        }
+        
+        input
+        {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            font-family: 'Roboto';
+            text-align: left;
+            margin-bottom: 15px;
+            border-radius: 3px;                
+        }
+        
+        .back, #send
+        {
+            width: 35%;
+            float: left;
+            opacity: 0.3;
+        }
+        
+        .back:hover
+        {
+            opacity: 1;
+        }
+        
+        #send
+        {
+            opacity: 1;
+            width: 45%;
+            text-align: center;
+            cursor: pointer;
+            float: right;
+        }
+    }
+    
+    .path
+    {
+        position:fixed;
+        bottom:20px;
+        left : 0;
+        width: 100%;
+        font-size: 0.75em;
+        
+        ul
+        {
+            width: 300px;
+            display: block;
+            margin: 0 auto;
+            padding: 0;
+            list-style-type: none;
+            
+            li
+            {
+                float: left;
+                margin: 0 20px 0 0;
+                color : #FFF;
+                opacity : 0.3;
+                
+                span
+                {
+                    border-radius: 50%;
+                    padding: 3px 8px;
+                    background: #FFF;
+                    color: #292f33;
+                    margin-right: 7px;
+                }
+            }
+            
+            .active
+            {
+                opacity: 1;
+            }
+        }
+    }
+    
+    .display-message
+    {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 0.9em;
+        color: white;
+        text-align: center;
+        background: #1D5B09; 
+        height: 40px;
+        line-height: 40px;
+    }
+    
+    .error
+    {
+        background: #C4000;
+    }
+}

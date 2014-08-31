@@ -1,0 +1,14 @@
+
+{% block checkboxcustom_widget %}
+    {% spaceless %}
+
+    <div class="chekbox">
+
+        <div class="checkON">OUI</div>
+        <div class="checkOFF">NON</div>
+        {{ block('checkbox_widget') }}
+
+    </div>
+        
+    {% endspaceless %}
+{% endblock %}

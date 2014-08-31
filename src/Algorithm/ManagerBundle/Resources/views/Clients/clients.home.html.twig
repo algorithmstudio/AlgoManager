@@ -1,0 +1,46 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("clients") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Clients</h1>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    <p class="actions"><a href="{{ path('algorithm_wiki_clients_create') }}" class="button">Ajouter un client</a></p>
+    {% endif %}
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            {% for c in clients %}
+                {% if c.private == true %}
+                   
+                    {% if c.createur.id == app.user.id %}
+                        <li class="row"><a href="{{ path('algorithm_wiki_clients_details', { 'id':c.id }) }}">{{ c.name }}</a></li>
+                    {% endif%}
+                    
+                {%else%}
+                    <li class="row"><a href="{{ path('algorithm_wiki_clients_details', { 'id':c.id }) }}">{{ c.name }}</a></li>
+                {% endif%}
+                
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% endblock %}
+    

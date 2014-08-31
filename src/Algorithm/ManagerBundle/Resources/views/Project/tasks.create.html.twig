@@ -1,0 +1,144 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("projets") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Créer une tâche</h1>
+    
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_tasks_create') }}" 
+          {{ form_enctype(form) }}>
+    
+    <p class="actions">
+        
+        <a href="{{ path('algorithm_wiki_projects') }}" class="button">Annuler</a>
+        <input type="submit" class="button" value="Créer">
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Nom de la tâche :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.name, {'attr' : {'class':'field-content input-style', 'placeholder' : 'Design de la homepage'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Assigné à :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.user, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Projet :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.project, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Priorité : </div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.priority) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Temps estimé :  </div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.timeEstimate, {'attr' : {'class':'field-content input-style', 'placeholder' : 'Temps en heures'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Temps passé : </div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.timeSpend, {'attr' : {'class':'field-content input-style', 'placeholder' : 'Temps en heures'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Dead Line :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.deadLine, {'attr' : {'class':'input-style date'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>            
+            
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Description :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.description, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            {{ form_rest(form) }}
+            
+        </ul>
+                
+        
+        
+    </aside>
+            
+            </form>
+    
+    {% endblock %}
+    

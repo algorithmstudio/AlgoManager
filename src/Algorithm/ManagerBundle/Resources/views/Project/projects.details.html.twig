@@ -1,0 +1,60 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("projets") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+        <h1>{{ project.name }} <a href="{{ path('algorithm_wiki_clients_infos', { 'id':project.id } ) }}" class="icon-info"></a></h1>
+    
+        {% if is_granted('ROLE_ADMIN') %}
+        <p class="actions">
+
+            <a href="{{ path('algorithm_wiki_tasks_create') }}" class="button">Ajouter une tâche</a>
+            <a href="{{ path('algorithm_wiki_projects_update', { 'id':project.id } ) }}" class="button">Modifier ce projet</a>
+            <a href="{{ path('algorithm_wiki_projects_delete', { 'project_id':project.id }) }}" class="button">Supprimer ce projet</a>
+
+        </p>
+        {% endif %}
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            <li class="row title">
+                <span class="column">Nom de la tâche</span>
+                <span class="column">Statut</span>
+                <span class="column">Priorité</span>
+                <span class="column">Assigné à</span>
+                <span class="column">Mis à jour le</span>
+                <div class="clear"></div>
+            </li>
+                        
+            {% for t in project.tasks %}
+            <li class="row">
+                <a href="{{ path('algorithm_wiki_tasks_details', { 'id':t.id }) }}">
+                    <span class="column">{{ t.name }}</span>
+                    <span class="column">{{ t.statut }}</span>
+                    <span class="column">{{ t.priority }}</span>
+                    <span class="column">{{ t.user.firstname }} {{ t.user.name }}</span>
+                    <span class="column">{{ t.lastUpdate|date('d/m/Y H:i:s') }}</span>
+                    <div class="clear"></div>
+                </a>
+            </li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% endblock %}
+    

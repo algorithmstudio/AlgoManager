@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #292f33;
+  font-family: 'Roboto';
+}
+.clear {
+  clear: both;
+}
+#wrapper .step {
+  width: 300px;
+  text-align: center;
+  margin: 10% auto;
+}
+#wrapper .step h1 {
+  margin-bottom: 30px;
+}
+#wrapper .step a,
+#wrapper .step #send {
+  display: block;
+  color: #292f33;
+  background: #FFF;
+  padding: 10px 15px;
+  font-size: 0.8em;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+}
+#wrapper .step a:hover,
+#wrapper .step #send:hover {
+  color: #FFF;
+  background: #1a95cf;
+}
+#wrapper .step input {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  font-family: 'Roboto';
+  text-align: left;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+#wrapper .step .back,
+#wrapper .step #send {
+  width: 35%;
+  float: left;
+  opacity: 0.3;
+}
+#wrapper .step .back:hover {
+  opacity: 1;
+}
+#wrapper .step #send {
+  opacity: 1;
+  width: 45%;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+}
+#wrapper .path {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  font-size: 0.75em;
+}
+#wrapper .path ul {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+}
+#wrapper .path ul li {
+  float: left;
+  margin: 0 20px 0 0;
+  color: #FFF;
+  opacity: 0.3;
+}
+#wrapper .path ul li span {
+  border-radius: 50%;
+  padding: 3px 8px;
+  background: #FFF;
+  color: #292f33;
+  margin-right: 7px;
+}
+#wrapper .path ul .active {
+  opacity: 1;
+}
+#wrapper .display-message {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0.9em;
+  color: white;
+  text-align: center;
+  background: #1D5B09;
+  height: 40px;
+  line-height: 40px;
+}
+#wrapper .error {
+  background: #C40 00;
+}

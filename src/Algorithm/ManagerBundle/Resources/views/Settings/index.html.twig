@@ -1,0 +1,129 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Paramètres</h1>
+    
+    <p class="actions">
+        
+        <a href="{{ path('algorithm_wiki_settings_mail') }}" class="button" title="Gestion des mails">Gestion des mails</a>
+
+    </p>
+   
+    <div class="clear"></div>
+                
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_settings_update_password') }}" 
+          class="box light-form">
+            
+        <aside >
+
+            <ul>
+
+                <li class="title">Changer mon mot de passe : <input type="submit" class="button" value="Mettre à jour mon mot de passe"></li>
+
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Ancien mot de passe :</div>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" class="field-content input-style">
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Nouveau mot de passe :</div>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="new_password" class="field-content input-style">
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Retaper mot de passe :</div>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="confirm_password" class="field-content input-style">
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+
+            </ul>
+
+        </aside>
+                    
+    </form>
+
+          <div class="clear"></div>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    <aside class="box table">
+        
+        <ul>
+            
+            <li class="title">IP Connectés :</li>
+            
+            {% for i in ips %}
+            
+            <li class="row">
+
+                <div class="col">
+                    <div class="col-content">{{ i.ip }}</div>
+                </div>
+                
+                <div class="col">
+                    <div class="col-content">{{ i.user.firstname }}  {{ i.user.name }}</div>
+                </div>
+                
+                <div class="col">
+                    <div class="col-content">{{ i.city }}</div>
+                </div>
+                
+                 <div class="col">
+                    <div class="col-content">{{ i.country }}</div>
+                </div>
+                
+                 <div class="col">
+                     <div class="col-content">
+                         <a href="{{ path('algorithm_wiki_settings_update_ip', { 'id':i.id })  }}" class="button">
+                         {% if i.authorize %}Révoquer l'IP{%else%}Autoriser l'IP{%endif%}
+                         </a>
+                     </div>
+                </div>
+                
+                <div class="clear"></div>
+
+            </li>
+            
+            {% endfor %}
+    
+        </ul>
+    
+    </aside>
+    {% endif %}
+    
+            
+    {% endblock %}
+    

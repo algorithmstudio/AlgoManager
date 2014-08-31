@@ -1,0 +1,97 @@
+
+    {% if clients|length > 0 %}
+    <aside class="box light dash search">
+        
+        <ul>
+            
+            <li class="title">Clients</li>
+             {% for c in clients %}
+            <li class="row"><a href="{{ path('algorithm_wiki_clients_details', { 'id':c.id }) }}">{{ c.name }}</a></li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    {% endif %}
+    
+    {% if accounts|length > 0 %}
+    <aside class="box light dash search">
+        
+        <ul>
+            
+            <li class="title">Comptes</li>
+            {% for a in accounts %}
+            <li class="row"><a href="{{ path('algorithm_wiki_clients_account_details', { 'id':a.id }) }}">{{ a.name }}</a></li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    {% endif %}
+    
+    {% if users|length > 0 %}
+    <aside class="box light dash search">
+        
+        <ul>
+            
+            <li class="title">Utilisateurs</li>
+            
+            {% for u in users %}
+            <li class="row"><a href="{{ path('algorithm_wiki_users_details', { 'id':u.id }) }}">{{ u.firstname ~" "~ u.name }}
+                <span>{{ u.lastConnexion|date('d/m/Y') }} à {{ u.lastConnexion|date('H:i:s') }}</span></a></li>
+            {% endfor %}
+            
+            
+        </ul>
+        
+    </aside>
+    {% endif %}
+     
+    {% if servers|length > 0 %}
+    <aside class="box light dash search">
+        
+        <ul>
+            
+            <li class="title">Serveurs </li>
+            {% for s in servers %}
+            <li class="row"><a href="{{ path('algorithm_wiki_servers_details', { 'id':s.id }) }}">{{ s.name }}</a></li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    {% endif %}
+           
+    {% if apps|length > 0 %}
+    <aside class="box light dash search">
+        
+        <ul>
+            
+            <li class="title">Applications</li>
+            
+            {% for a in apps %}
+                <li class="row"><a href="{{ path('algorithm_wiki_servers_details', { 'id':a.server.id }) }}">{{ a.name }}<span>{{ a.server.name }}</span></a></li>
+            {% endfor %}
+            
+            
+        </ul>
+        
+    </aside>
+    {% endif %}
+           
+    {% if vhost|length > 0 %}
+    <aside class="box light dash search">
+        
+        <ul>
+            
+            <li class="title">VirtualHosts</li>
+            
+            {% for v in vhost %}
+                <li class="row"><a href="{{ path('algorithm_wiki_servers_virtualhost_details', { 'id':v.id }) }}">{{ v.name }}<span>{{ v.server.name }}</span></a></li>
+            {% endfor %}
+            
+            
+        </ul>
+        
+    </aside>
+    {% endif %}

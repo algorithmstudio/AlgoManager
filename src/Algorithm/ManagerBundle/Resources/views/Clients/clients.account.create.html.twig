@@ -1,0 +1,120 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("clients") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Créer un compte</h1>
+    
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_clients_account_create') }}" 
+          {{ form_enctype(form) }}>
+    
+    <p class="actions">
+        
+        <a href="#" class="button">Annuler</a>
+        <input type="submit" class="button" value="Créer">
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Nom du compte :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.name, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Login :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.login, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Mot de passe :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.password, {'attr' : {'class':'field-content input-style password'}}) }}
+                    <div class="button" id="password-generate-button">Générer</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Url :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.url, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Informations :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.informations, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Clients :</div>
+                </div>
+                <div class="field">
+                    {{ form_widget(form.clients, {'attr' : {'class':'field-content input-style'}}) }}
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            {{ form_rest(form) }}
+            
+        </ul>
+                
+        
+        
+    </aside>
+            
+            </form>
+    
+    {% endblock %}
+    

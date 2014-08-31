@@ -1,0 +1,105 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+
+    {%block nav %} {{ nav.navigation("dashboard") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+
+{% block body %}
+    
+    <aside class="box light dash">
+        
+        <ul>
+            
+            <li class="title">Clients {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('algorithm_wiki_clients_create') }}" class="button">Ajouter un client</a>{% endif %}</li>
+            {% for c in clients %}
+                {% if c.private == true %}
+                   
+                    {% if c.createur.id == app.user.id %}
+                        <li class="row"><a href="{{ path('algorithm_wiki_clients_details', { 'id':c.id }) }}">{{ c.name }}</a></li>
+                    {% endif%}
+                    
+                {%else%}
+                    <li class="row"><a href="{{ path('algorithm_wiki_clients_details', { 'id':c.id }) }}">{{ c.name }}</a></li>
+                {% endif%}
+                
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    <aside class="box light dash">
+        
+        <ul>
+            
+            <li class="title">Comptes {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('algorithm_wiki_clients_account_create') }}" class="button">Ajouter un compte</a>{% endif %}</li>
+            
+            {% for a in accounts %}
+                {% if a.clients.private == true %}
+                   
+                    {% if a.clients.createur.id == app.user.id %}
+                        <li class="row"><a href="{{ path('algorithm_wiki_clients_account_details', { 'id':a.id }) }}">{{ a.name }}</a></li>
+                    {% endif%}
+                    
+                {%else%}
+                    <li class="row"><a href="{{ path('algorithm_wiki_clients_account_details', { 'id':a.id }) }}">{{ a.name }}</a></li>
+                {% endif%}
+            
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    <aside class="box light dash">
+        
+        <ul>
+            
+            <li class="title">Utilisateurs {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('algorithm_wiki_users_create') }}" class="button">Ajouter un utilisateur</a>{% endif %}</li>
+            
+            {% for u in users %}
+                <li class="row"><a href="{{ path('algorithm_wiki_users_details', { 'id':u.id }) }}">{{ u.firstname ~" "~ u.name }} 
+                        <span>{{ u.lastConnexion|date('d/m/Y') }} à {{ u.lastConnexion|date('H:i:s') }}</span></a></li>
+            {% endfor %}
+            
+            
+        </ul>
+        
+    </aside>
+    {% endif %}
+     
+    <aside class="box light dash">
+        
+        <ul>
+            
+            <li class="title">Serveurs  {% if is_granted('ROLE_ADMIN') %}<a href="{{ path('algorithm_wiki_servers_create') }}" class="button">Ajouter un serveur</a>{% endif %}</li>
+            {% for s in servers %}
+                        <li class="row">
+                            <a href="{{ path('algorithm_wiki_servers_details', { 'id':s.id }) }}">{{ s.name }} 
+                                <span class="ping">
+                                    {{ s.pingTime }}
+                                {% if s.ping %}
+                                    Ping <span class='icon-check valid'></span>
+                                {% else %}
+                                    <span class='error'>Erreur</span>
+                                {% endif %}
+                                </span>
+                            </a>
+                        </li>
+            {% endfor %}
+            
+        </ul>
+        
+    </aside>
+    
+{% endblock %}

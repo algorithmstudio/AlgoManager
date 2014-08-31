@@ -1,0 +1,16 @@
+<?php 
+
+    require 'pdo.class.php';
+    require 'synchro.server.class.php';
+
+    $pdo = new PDOClass("{{ip_server}}", "{{ sql_user }}", "{{ sql_password }}");
+    $server = new Server($pdo, {{ server_id }}, "{{ folder }}", "{{ folder_apache }}");
+
+    {% if synchApps %}$server->sendApps();{% endif %}
+
+    {% if synchVhosts %}$server->sendVirtualHost();{% endif %}
+    
+    {% if syncApache %}$server->sendApacheErrorsLogs();{% endif %}
+   
+
+ ?>

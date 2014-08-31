@@ -1,0 +1,37 @@
+    {% extends "AlgorithmSetupBundle::layout.html.twig" %}
+
+    {% block body %}
+        
+        <div class="step">
+            
+            <h1>
+                <object type="image/svg+xml" data="{{ asset('bundles/wiki/assets/svg/algo_logo.svg') }}" width="120" height="42"></object>
+            </h1>
+            
+            <form action="{{ path('algorithm_setup_one') }}" method="POST">
+            
+                <input type="text" name="host" placeholder="Host de la base de donnée" required/>
+                <input type="text" name="user" placeholder="Login de la base" required/>
+                <input type="password" name="password" placeholder="Mot de passe de la base" required/>
+                
+                <a class="back" href="{{ path('algorithm_setup_one') }}">Retour</a>
+                <input type="submit" id="send" value="Suivant"/>
+                
+            </form>
+            
+        </div>
+                
+                <div class="path">
+
+            <ul>
+
+                <li class="active"><span>1</span> Base de donnée</li>
+                <li ><span>2</span> Administrateur</li>
+                
+                <div class="clear"></div>
+
+            </ul>
+
+        </div>
+        
+    {% endblock %}

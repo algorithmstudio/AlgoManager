@@ -1,0 +1,86 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("clients") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>{{ account.name }}</h1>
+    
+    <p class="actions">
+        
+        <a href="{{ path("algorithm_wiki_clients_account_update", { 'account_id' : account.id }) }}" class="button">Modifier ce compte</a>
+        <a href="{{ path("algorithm_wiki_clients_account_remove", { 'account_id' : account.id }) }}" class="button">Supprimer ce compte</a>
+        
+    </p>
+    
+    <div class="clear"></div>
+    
+    <aside class="box">
+        
+        <ul>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Login :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ account.login }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Mot de passe :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ account.password }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Url :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ account.url }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+            <li class="row">
+            
+                <div class="label">
+                    <div class="label-content">Informations :</div>
+                </div>
+                <div class="field">
+                    <div class="field-content">{{ account.informations|nl2br }}</div>
+                </div>
+                <div class="clear"></div>
+                
+            </li>
+            
+        </ul>
+        
+    </aside>
+                
+    <p class="date">Créer le {{ account.created|date('d/m/Y') }} à {{ account.created|date('H:i:s') }} par {{ account.createur.firstname }} {{ account.createur.name }}</p>
+    
+    {% endblock %}
+    

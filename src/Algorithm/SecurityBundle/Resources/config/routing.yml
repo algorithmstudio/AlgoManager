@@ -1,0 +1,3 @@
+algorithlm_security_forget:
+    pattern:  /forget
+    defaults: { _controller: AlgorithmSecurityBundle:Security:forget }

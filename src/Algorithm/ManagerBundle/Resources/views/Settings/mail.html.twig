@@ -1,0 +1,134 @@
+
+    {% extends "AlgorithmManagerBundle::layout.html.twig" %}
+    {% import  "AlgorithmManagerBundle:Macros:navigation.html.twig" as nav %}
+    {% import  "AlgorithmManagerBundle:Macros:breadcrumb.html.twig" as breadcrumb %}
+    
+    {%block nav %} {{ nav.navigation("") }}
+
+    {% endblock %}
+
+    {%block breadcrumb %}
+        {{ breadcrumb.bread(breadcrumb_data) }}
+    {% endblock %}
+    
+    {% block body %}
+
+    <h1>Configurer votre mail</h1>
+    
+    <form method="POST" 
+          id="form-account-create" 
+          action="{{ path('algorithm_wiki_settings_mail') }}" 
+          class="box light-form"
+          {{ form_enctype(form) }}>
+        
+        <p class="actions">
+            
+            <input class="button" type="submit" value="Mettre à jour"/>
+            
+        </p>
+    
+        <div class="clear"></div>
+
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <aside class="box">
+
+            <ul>
+
+                <li class="title">Mail d'envoi <span>seul Gmail est supporté</span></li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Email :</div>
+                    </div>
+                    <div class="field">
+                        {{ form_widget(form.email, {'attr' : {'class':'field-content input-style'}}) }}
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Password :</div>
+                    </div>
+                    <div class="field">
+                        {{ form_widget(form.password, {'attr' : {'class':'field-content input-style'}}) }}
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+
+            </ul>
+
+        </aside>
+                
+        <div class="clear"></div>
+        {% endif %}  
+              
+        <aside class="box">
+
+            <ul>
+
+                <li class="title">Paramètres de Mail <span>M'envoyer un mail quand :</span></li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Une tâche m'est assigné :</div>
+                    </div>
+                    <div class="field">
+                        {{ form_widget(form.sendMailNewTask, {'attr' : {'class':'field-content input-style'}}) }}
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">Un commentaire est ajouté :</div>
+                    </div>
+                    <div class="field">
+                        {{ form_widget(form.sendMailNewComment, {'attr' : {'class':'field-content input-style'}}) }}
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">La tâche est mise à jour :</div>
+                    </div>
+                    <div class="field">
+                        {{ form_widget(form.sendMailUpdateTask, {'attr' : {'class':'field-content input-style'}}) }}
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+                
+                <li class="row">
+
+                    <div class="label">
+                        <div class="label-content">La tâche est clôturée :</div>
+                    </div>
+                    <div class="field">
+                        {{ form_widget(form.sendMailEndTask, {'attr' : {'class':'field-content input-style'}}) }}
+                    </div>
+                    <div class="clear"></div>
+
+                </li>
+
+            </ul>
+                    
+            {{ form_rest(form) }}
+
+        </aside>
+            
+    </form>            
+    
+            
+    {% endblock %}
+    

@@ -1,0 +1,266 @@
+algorithm_wiki_homepage:
+    path:     /
+    defaults: { _controller: AlgorithmManagerBundle:Dash:index }
+    
+algorithm_wiki_clients:
+    path:     /clients
+    defaults: { _controller: AlgorithmManagerBundle:Clients:index }
+    
+algorithm_wiki_servers:
+    path:     /servers
+    defaults: { _controller: AlgorithmManagerBundle:Servers:index }
+    
+algorithm_wiki_users:
+    path:     /utilisateurs
+    defaults: { _controller: AlgorithmManagerBundle:Users:index }
+    
+algorithm_wiki_projects:
+    path:     /projects
+    defaults: { _controller: AlgorithmManagerBundle:Project:index }
+   
+    
+#####################################################
+
+    #CLIENTS
+    
+####################################################
+
+algorithm_wiki_clients_details:
+    path:     /client/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:details }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_clients_infos:
+    path:     /client/informations/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:clientsInfos }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_clients_create:
+    path:     /client/create
+    defaults: { _controller: AlgorithmManagerBundle:Clients:clientsCreate }
+    
+algorithm_wiki_clients_delete:
+    path:     /client/delete/{client_id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:clientsDelete }
+    requirements:
+        client_id: \d+
+        
+algorithm_wiki_clients_update:
+    path:     /client/update/{client_id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:clientsUpdate }
+    requirements:
+        client_id: \d+
+    
+    
+#####################################################
+
+    #ACCOUNT
+    
+####################################################
+
+algorithm_wiki_clients_account_details:
+    path:     /client/account/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:account }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_clients_account_create:
+    path:     /client/account/create
+    defaults: { _controller: AlgorithmManagerBundle:Clients:accountCreate }
+    
+algorithm_wiki_clients_account_update:
+    path:     /client/account/update/{account_id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:accountUpdate }
+    requirements:
+        account_id: \d+
+    
+algorithm_wiki_clients_account_remove:
+    path:     /client/account/delete/{account_id}
+    defaults: { _controller: AlgorithmManagerBundle:Clients:accountDelete }
+    requirements:
+        account_id: \d+
+        
+        
+#####################################################
+
+    #USERS
+    
+####################################################
+
+algorithm_wiki_users_details:
+    path:     /users/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Users:details }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_users_create:
+    path:     /users/create
+    defaults: { _controller: AlgorithmManagerBundle:Users:create }
+    
+algorithm_wiki_users_update:
+    path:     /users/update/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Users:update }
+    requirements:
+        id: \d+
+    
+algorithm_wiki_users_delete:
+    path:     /users/delete/{user_id}
+    defaults: { _controller: AlgorithmManagerBundle:Users:delete }
+    requirements:
+        user_id: \d+
+        
+#####################################################
+
+    #SERVERS
+    
+####################################################
+
+algorithm_wiki_servers_details:
+    path:     /servers/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:details }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_servers_create:
+    path:     /servers/create
+    defaults: { _controller: AlgorithmManagerBundle:Servers:create }
+    
+algorithm_wiki_servers_update:
+    path:     /servers/update/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:update }
+    requirements:
+        id: \d+
+    
+algorithm_wiki_servers_delete:
+    path:     /servers/delete/{server_id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:delete }
+    requirements:
+        server_id: \d+
+        
+algorithm_wiki_servers_apps:
+    path:     /servers/applications/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:apps }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_servers_virtualhost_details:
+    path:     /servers/virualhosts/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:virtualHostDetails }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_servers_synchro_file:
+    path:     /servers/synchronisation/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:synchronisation }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_servers_ping:
+    path:     /servers/ping/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Servers:ping }
+    requirements:
+        id: \d+
+
+#####################################################
+
+    #SEARCH
+    
+####################################################
+
+algorithm_wiki_search:
+    path:     /search
+    defaults: { _controller: AlgorithmManagerBundle:Search:index }
+    
+    
+#####################################################
+
+    #SETTINGS
+    
+####################################################
+
+algorithm_wiki_settings:
+    path:     /settings
+    defaults: { _controller: AlgorithmManagerBundle:Settings:index }
+ 
+algorithm_wiki_settings_update_ip:
+    path:     /settings/update-ip/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Settings:updateIP }
+    
+algorithm_wiki_settings_update_password:
+    path:     /settings/update-password
+    defaults: { _controller: AlgorithmManagerBundle:Settings:updatePassword }
+    
+algorithm_wiki_settings_mail:
+    path:     /settings/mail
+    defaults: { _controller: AlgorithmManagerBundle:Settings:mail }
+    
+#####################################################
+
+    #PROJECTS
+    
+#################################################### 
+    
+    
+algorithm_wiki_projects_create:
+    path:     /projects/create
+    defaults: { _controller: AlgorithmManagerBundle:Project:projectCreate }
+    
+algorithm_wiki_projects_details:
+    path:     /projects/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:details }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_projects_update:
+    path:     /projects/update/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:projectUpdate }
+    requirements:
+        id: \d+
+        
+algorithm_wiki_projects_delete:
+    path:     /projects/delete/{project_id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:projectDelete }
+    requirements:
+        project_id: \d+
+        
+algorithm_wiki_tasks_create:
+    path:     /task/create
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskCreate }
+    
+algorithm_wiki_tasks_details:
+    path:     /task/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskDetails }
+    requirements:
+        id: \d+
+
+algorithm_wiki_tasks_update:
+    path:     /task/update/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskUpdate }
+    requirements:
+        task_id: \d+
+        
+algorithm_wiki_tasks_delete:
+    path:     /task/delete/{task_id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskDelete }
+    requirements:
+        task_id: \d+
+        
+algorithm_wiki_tasks_achievement_update:
+    path:     /task/achievement/{task_id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskAchievement }
+    requirements:
+        task_id: \d+
+        
+algorithm_wiki_tasks_end:
+    path:     /task/end/{task_id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskEnd }
+    requirements:
+        task_id: \d+
+        
+algorithm_wiki_tasks_history:
+    path:     /task/history/{id}
+    defaults: { _controller: AlgorithmManagerBundle:Project:taskHistory }
+    requirements:
+        id: \d+
