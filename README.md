@@ -17,20 +17,19 @@ Ensuite exécuter cette commande
 
     php composer.phar update
 
+Rendez-vous ensuite à l'adresse http://localhost/manager/web/app.php/setup/start
+pour commencer la configuration de la plateforme.
 
 ### Télécharger l'archive
 
-To quickly test Symfony, you can also download an [archive][3] of the Standard
-Edition and unpack it somewhere under your web server root directory.
-
-If you downloaded an archive "without vendors", you also need to install all
-the necessary dependencies. Download composer (see above) and run the
-following command:
-
-    php composer.phar install
+L'archive est disponible à cette adresse http://demo.manager.algorithmstudio.fr/sources/algo.manager.1.0.zip
+Une fois dézipper rendez-vous ensuite à l'adresse http://localhost/manager/web/app.php/setup/start
+pour commencer la configuration de la plateforme.
 
 2) Démo
 -------------------------------------
 
-http://demo.manager.algorithmstudio.fr
+http://demo.manager.algorithmstudio.fr/app.php
 
+Login : john.doe@example.com
+Password : demoalgomanager
