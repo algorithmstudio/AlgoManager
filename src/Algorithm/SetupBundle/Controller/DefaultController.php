@@ -68,25 +68,7 @@ class DefaultController extends Controller
         
         if($request->getMethod() == "POST")
         {
-            /*if( !isset( $request->request->get('host') ) )
-            {
-                $this->get('session')->getFlashBag()->add('error', "Le host est obligatoire"); 
-                return $this->redirect( $this->generateUrl( 'algorithm_setup_one' ) ); 
-            }
-            
-            if( !isset($request->request->get('user')))
-            {
-                $this->get('session')->getFlashBag()->add('error', "L'utilisateur est obligatoire"); 
-                return $this->redirect( $this->generateUrl( 'algorithm_setup_one' ) ); 
-            }
-            
-            if( !isset($request->request->get('password')))
-            {
-                $this->get('session')->getFlashBag()->add('error', "Le mot de passe est obligatoire"); 
-                return $this->redirect( $this->generateUrl( 'algorithm_setup_one' ) ); 
-            }*/
-            
-            $file = '../app/config/parameters_test.yml';
+            $file = '../app/config/parameters.yml';
             $file_content = file_get_contents($file);
                         
             $file_content = str_replace('|HOST|', $request->request->get('host') , $file_content);
@@ -95,24 +77,12 @@ class DefaultController extends Controller
             
             file_put_contents($file, $file_content);
                         
-            $command = "php ../app/console doctrine:database:create";
-
-            $descriptorspec = array(
-                0 => array("pipe", "r"),  // // stdin est un pipe où le processus va lire
-                1 => array("pipe", "w"),  // stdout est un pipe où le processus va écrire
-                2 => array("file", "/tmp/error-output.txt", "a") // stderr est un fichier
-             );
-
-            $process = proc_open($command, $descriptorspec, $pipes );
-
-            if (is_resource($process)) 
-            {
-                fclose($pipes[1]);
-                $return_value = proc_close($process);
-            }
-            
+			exec('php ../app/console doctrine:database:create');
             exec('php ../app/console doctrine:schema:update --dump-sql');
             exec('php ../app/console doctrine:schema:update --force');
+			
+			exec('php ../app/console maxmind:geoip:update-data data/GeoIP.dat');
+			exec('php ../app/console maxmind:geoip:update-data data/GeoLiteCity.dat');
             
             $this->get('session')->getFlashBag()->add('valide', "La base de donnée a été créé"); 
             return $this->redirect( $this->generateUrl( 'algorithm_setup_two' ) ); 
