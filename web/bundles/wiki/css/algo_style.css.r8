@@ -1,0 +1,38 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+.header {
+  background: #262626;
+  line-height: 30px;
+}
+.header h1 {
+  margin: 0;
+  padding: 8px 0px 8px 20px;
+}
+.navigation {
+  width: 160px;
+  background: #292f33;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.navigation .main-navigation {
+  margin:  0 0;
+  padding: 0;
+  list-style-type: none;
+}
+.navigation .main-navigation li a {
+  padding: 15px 20px;
+  color: #808080;
+  text-decoration: none;
+  display: block;
+  font-size: 0.8em;
+}
+.navigation .main-navigation li .active,
+.navigation .main-navigation li a:hover {
+  background: #1a95cf;
+  color: #FFF;
+}

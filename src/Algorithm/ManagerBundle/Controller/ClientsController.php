@@ -186,6 +186,8 @@ class ClientsController extends Controller
         
         $request = $this->container->get('request');
         $crypto  = $this->container->get('algorithm_wiki.crypto');
+        $user    = $this->get('security.context')->getToken()->getUser();
+        
         if($account->getClients()->getPrivate() == true)
         {
            $crypto->init( $user->getSettings()->getKeyUser() ); 

@@ -1,7 +1,8 @@
 <html> 
     <head>
         <meta charset="utf-8">
-        <title>Algo Manager</title>
+        <title>{% block title %} Algo Wiki {%endblock%}</title>
+        <meta name="description" content="Développeur Web, Symfoy, HTML, CSS3, jQuery {% block description %}{%endblock%}">
         <meta name="viewport" content="user-scalable=no, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, width=device-width">
         
         <link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
@@ -11,9 +12,10 @@
         <link rel="apple-touch-icon-precomposed" href="{{ asset('icoons/apple-touch-icon-57x57-precomposed.png')}}">
         
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('bundles/wiki/fonts/style.css') }}" type="text/css" />
         
-        {% stylesheets debug=false filter='lessphp' output='bundles/wiki/css/algo_setup.css'
-        '@AlgorithmSetupBundle/Resources/less/main.less'
+        {% stylesheets debug=false filter='lessphp' output='bundles/wiki/css/algo_style.css'
+        '@AlgorithmWikiBundle/Resources/less/algo_main.less'
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
@@ -23,8 +25,12 @@
     </head>
 
     <body>
-          
-        <section id="wrapper">
+        
+        <header class="header">
+            
+            <h1>
+                <object type="image/svg+xml" data="{{ asset('bundles/wiki/assets/svg/algo_logo.svg') }}" width="40" height="14"></object>
+            </h1>
             
             {% for message in app.session.flashbag.get('valide') %}
                 <span class="display-message">{{ message }}</span>
@@ -34,10 +40,41 @@
                 <span class="display-message error">{{ message }}</span>
             {% endfor %}
             
+            <div class="user">
+                Bonjour {{ app.user.username }} <span>N</span>
+                <div class="user-expend">
+                    
+                    <ul>
+                        <li><a href="{{ path('algorithm_wiki_settings') }}">Paramètres</a></li>
+                        <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            
+        </header>       
+            
+        {%block nav %}{% endblock %}
+                      
+        <section id="wrapper">
+            
+            {%block breadcrumb %}{% endblock %}
+            
+            <section id="data-content">
+
             {%block body %}{% endblock %}
             
-        </section>
+            </section>
 
+        </section>
+            
+        <script type="text/javascript">
+
+            var search_path = "{{ path('algorithm_wiki_search') }}";
+
+        </script>    
+        
+        <script type="text/javascript" src="{{ asset('bundles/wiki/js/algo.main.app.js') }}"></script>
             
     </body>
 </html>

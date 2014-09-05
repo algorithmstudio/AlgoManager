@@ -216,6 +216,12 @@ body
             min-width : 40%;
         }
         
+        @media only screen and (max-width : 800px)
+        { 
+            min-width : 100%;
+            margin-bottom:20px;
+        }
+        
         a
         {
             text-decoration: none;
@@ -243,15 +249,25 @@ body
             width: 250px;
             font-size: 0.7em;
             background: @algo_background_color;
-      
+        }
         
+        @media only screen and (max-width : 800px)
+        { 
+            width:100%;
+            margin-bottom:20px;
+            
+            .button
+            {
+                float: left;
+                margin: 0 20px 0 0;
+            }
         }
     }
     
     .first
-        {
-            margin-bottom: 15px;
-        }
+    {
+        margin-bottom: 15px;
+    }
     
     .box
     {
@@ -306,6 +322,11 @@ body
                     width: 16%;
                     font-size: .8em;
                     float: left;
+                    
+                    @media only screen and (max-width : 800px)
+                    { 
+                        width:45%;
+                    }
                     
                     .label-content, label-content-icon
                     {
@@ -391,6 +412,11 @@ body
                     padding: 15px 1%;
                     float:left;
                     font-size:0.8em;
+                    
+                    @media only screen and (max-width : 800px)
+                    { 
+                        width:49%;
+                    }
                         
                     .field-content
                     {
@@ -617,6 +643,13 @@ body
        margin-bottom: 30px;
        width: 49%; 
        
+       @media only screen and (max-width : 800px)
+       { 
+            width: 100%; 
+            margin-bottom: 20px;
+            float: none;
+       }
+       
        ul
        {
             .row
@@ -750,11 +783,21 @@ body
     .light:nth-child(even)
     {
         margin: 0 2% 0 0;
+        
+        @media only screen and (max-width : 800px)
+        { 
+            margin:0 0 20px 0;
+        }
     }
     
     .dash:nth-child(even)
     {
         margin: 0 0 30px 2%;
+        
+        @media only screen and (max-width : 800px)
+        { 
+            margin:0 0 30px 0;
+        }
     }
     
     .dash
@@ -844,6 +887,11 @@ body
                 width: 20%;
                 float: left;
                 
+                @media only screen and (max-width : 800px)
+                { 
+                    width : 25%;
+                }
+                
                 .col-content
                 {
                     font-size: 0.8em;
@@ -860,6 +908,14 @@ body
                     .button:hover
                         {
                         color: @algo_nav_active_color;
+                    }
+                }
+                
+                @media only screen and (max-width : 800px)
+                { 
+                    .country
+                    {
+                        display: none;
                     }
                 }
             }
@@ -882,11 +938,21 @@ body
                 .label
                 {
                     width: 20%;
+                    
+                    @media only screen and (max-width : 800px)
+                    { 
+                        width : 40%;
+                    }
                 }
                 
                 .field
                 {
                     width: 68%;
+                    
+                    @media only screen and (max-width : 800px)
+                    { 
+                        width : 51%;
+                    }
                     
                     .input-style
                     {
